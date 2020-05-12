@@ -333,11 +333,11 @@ if __name__ == "__main__":
 
 	# compute preferences
 	print (f'Begin prefs')
-	all_actors = user_prefs(movies_watched, movies_actors, sample_users, "actors", True)
+	all_actors = user_prefs(movies_watched, movies_actors, sample_users, "actors")
 	print (f'End actors')
-	all_directors = user_prefs(movies_watched, movies_directors, sample_users, "director", True)
+	all_directors = user_prefs(movies_watched, movies_directors, sample_users, "director")
 	print (f'End directors')
-	all_genres = user_prefs(movies_watched, movies_genres, sample_users, "genre", True)
+	all_genres = user_prefs(movies_watched, movies_genres, sample_users, "genre")
 	print (f'End genres')
 	all_similarities = user_sim(all_genres)
 
@@ -352,7 +352,7 @@ if __name__ == "__main__":
 		testing_users_cold_start[user]["sims"] = all_similarities[user]
 
 	predictions = []
-	for user_id, true_ratings in compressed_test_ratings_dict.items():
+	for user_id_ratings in compressed_test_ratings_dict.items():
 		if true_ratings:
 			for (film_id, str_rating) in true_ratings:
 				strength = film_strength(user_id, film_id, films, ratings, all_actors, all_directors, all_genres, all_similarities, testing_users_cold_start[user_id], movies_genres, movies_directors, movies_actors)
