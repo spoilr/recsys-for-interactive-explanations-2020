@@ -352,7 +352,7 @@ if __name__ == "__main__":
 		testing_users_cold_start[user]["sims"] = all_similarities[user]
 
 	predictions = []
-	for user_id_ratings in compressed_test_ratings_dict.items():
+	for user_id, true_ratings in compressed_test_ratings_dict.items():
 		if true_ratings:
 			for (film_id, str_rating) in true_ratings:
 				strength = film_strength(user_id, film_id, films, ratings, all_actors, all_directors, all_genres, all_similarities, testing_users_cold_start[user_id], movies_genres, movies_directors, movies_actors)
